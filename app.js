@@ -119,3 +119,7 @@ function finishGame() {
 // if the branch has already been merged into main, or with git branch -D <branch_name> if it hasn’t. 
 // You will usually want to delete branches when you’re done with them, 
 // otherwise they can pile up and make it more difficult to find the branch you’re looking for when you need it.
+
+// Now that we have all our code in the main branch, we don’t really need our rps-ui branch anymore.
+// Let’s do some cleanup, both locally and in the remote repo. Delete the branch from our local repo with git branch -d rps-ui and also delete it
+// from the remote repo on GitHub with git push --delete origin rps-ui. Congrats, we’re all done with our cleanup!
