@@ -7,7 +7,7 @@ const scissorsBtn = document.querySelector('.scissors');
 
 rockBtn.addEventListener('click', function(){pre_playRound("rock")});
 paperBtn.addEventListener('click', function(){pre_playRound("paper")});
-scissorsBtn.addEventListener('click', function(){pre_playRound("scissors")});
+scissorsBtn.addEventListener('click', function(){pre_playRound("scissor")});
 
 const results = document.querySelector('.results');
 
@@ -77,32 +77,43 @@ function playRound(playerSelection, computerSelection) {
     const p2 = document.createElement('p');
     p2.textContent = `Computer Selection: ${computerSelection}`
 
+    const p3 = document.createElement('p');
+    p3.textContent = textRound;
+
+    const p4 = document.createElement('p');
+    p4.textContent = `User Points: ${userPoints} Computer Points: ${computerPoints}`;
+
     results.appendChild(p1);
     results.appendChild(p2);
+    results.appendChild(p3);
+    results.appendChild(p4);
 
-    return textRound
-}
+    if(computerPoints == 5 || userPoints == 5) {
+        rockBtn.disabled = true;
+        paperBtn.disabled = true;
+        scissorsBtn.disabled = true;
 
-
-function game() {
-    for(let i=0; i < 5; i++) {
-        const playerSelection = getUserChoice()
-        const computerSelection = getComputerChoice()
-        console.log(playRound(playerSelection, computerSelection))
-        console.log(`User Points: ${userPoints}`, `Computer Points: ${computerPoints}`)
-        console.log("\n")
-    }    
-
-    if(userPoints > computerPoints) {
-        console.log(`Player Wins with ${userPoints} points`) 
-    } else if(userPoints < computerPoints)  {
-        console.log(`Computer Wins with ${userPoints} points`) 
-    } else { // draw
-        console.log(`Tie with ${userPoints} points`)
+        finishGame();
     }
 }
 
-game()
+
+function finishGame() {
+
+    const mSecret = document.createElement('h2');
+
+    if(userPoints > computerPoints) {
+        mSecret.textContent = `Player Wins with ${userPoints} points`
+    } else if(userPoints < computerPoints)  {
+        mSecret.textContent = `Computer Wins with ${computerPoints} points`
+    } else { // draw
+        mSecret.textContent = `Tie with ${userPoints} points`
+    }
+
+    results.appendChild(mSecret);
+}
+
+// game()
 
 // When you don’t need a branch anymore it can be deleted using git branch -d <branch_name> 
 // if the branch has already been merged into main, or with git branch -D <branch_name> if it hasn’t. 
